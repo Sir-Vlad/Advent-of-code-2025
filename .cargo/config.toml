@@ -10,3 +10,4 @@ time = "run --quiet --release -- time"
 
 [env]
 AOC_YEAR = "2025"
+ADVENT_OF_CODE_SESSION = "53616c7465645f5f1d26b470a2b210a9c2dbacaf4f7a376cc03cbfbe6bfd88433df52f31e530732944bda6474394da531b4001260ecd1ae2fd74ba9e4ba05a57"
