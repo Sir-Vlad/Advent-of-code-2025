@@ -86,8 +86,6 @@ fn calculate_position(current_pos: &mut i64, new_pos: i64, key: &mut i64, direct
             } else if giri == 1 && *current_pos == 0 {
                 // print!("Zero - ");
                 1
-            } else if giri > 1 && *current_pos == 0 {
-                giri + 1
             } else {
                 // print!("Giri - {giri} - ");
                 giri
@@ -105,9 +103,10 @@ fn calculate_position(current_pos: &mut i64, new_pos: i64, key: &mut i64, direct
             } else if giri >= 1 && *current_pos == 0 {
                 giri + 1
             } else if giri >= 1
-                && (old_position - (new_pos % 100) <= 0 || (old_position != 0 && old_position - (new_pos % 100) >= 0))
+                && (old_position - (new_pos % 100) <= 0
+                    || (old_position != 0 && old_position - (new_pos % 100) >= 0))
             {
-                giri + 1
+                giri + (if old_position != 0 { 1 } else { 0 })
             } else {
                 // print!("Giri - {giri} - ");
                 giri
