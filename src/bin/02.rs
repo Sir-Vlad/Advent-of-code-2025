@@ -35,14 +35,6 @@ pub fn part_one(input: &str) -> Option<u64> {
 }
 
 pub fn part_two(input: &str) -> Option<u64> {
-    /*
-    Divido la stringa in n sempre più grande fino alla matà
-    121212
-
-    1 ciclo: 1 ripetuto 6(length) no
-    2 ciclo: 12 ripetuto 3(length/2) si - inserito
-    */
-
     let input = input.split(",");
     let mut invalid_el = HashSet::new();
     for range_str in input {
@@ -52,11 +44,7 @@ pub fn part_two(input: &str) -> Option<u64> {
         let (start, end) = range_str.split_once('-').unwrap();
         let range = std::ops::Range {
             start: start.parse::<u64>().unwrap(),
-            end: end
-                .trim()
-                .parse::<u64>()
-                .expect(format!("Errore value '{end}'").as_str())
-                + 1,
+            end: end.trim().parse::<u64>().unwrap() + 1,
         };
         for el in range {
             let el_str = el.to_string();
@@ -72,14 +60,11 @@ pub fn part_two(input: &str) -> Option<u64> {
                     .map(|x| unsafe { std::str::from_utf8_unchecked(x) })
                     .collect::<Vec<_>>();
 
-                if  split_str.len() > 1 && split_str.iter().all(|x| *x == sub_string) {
-                    println!("{el:#?} - {split_str:?}");
+                if split_str.len() > 1 && split_str.iter().all(|x| *x == sub_string) {
                     invalid_el.insert(el);
                 }
             }
-            //println!()
         }
-        //println!("{:#?}", invalid_el);
     }
     Some(invalid_el.iter().sum())
 }
